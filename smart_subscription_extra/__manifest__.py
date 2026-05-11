@@ -7,7 +7,6 @@
     'depends': ['sale_subscription', 'smart_l10n_gt', 'account'],
     'data': [
         'security/ir.model.access.csv',
-        'data/ir_config_parameter.xml',
         'data/ir_cron.xml',
         'views/res_config_settings_views.xml',
         'views/sale_subscription_views.xml',
