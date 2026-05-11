@@ -16,7 +16,7 @@ class SmartLateFeeWizard(models.TransientModel):
     currency_id       = fields.Many2one('res.currency', readonly=True)
 
     def action_confirm(self):
-        """Genera la factura adicional de mora."""
+        """Genera la factura de mora y abre el registro de pago en la factura original."""
         self.ensure_one()
 
         product_id_str = self.env['ir.config.parameter'].sudo().get_param(
@@ -66,19 +66,14 @@ class SmartLateFeeWizard(models.TransientModel):
                  f'Monto: {self.fee_amount:.2f} {self.currency_id.name}.'
         )
 
-        return {
-            'type':      'ir.actions.act_window',
-            'name':      'Factura de mora',
-            'res_model': 'account.move',
-            'res_id':    late_fee_invoice.id,
-            'view_mode': 'form',
-            'target':    'current',
-        }
+        # Abrir el registro de pago en la factura original, saltando el chequeo de mora
+        return origin.with_context(skip_smart_late_fee=True).action_register_payment()
 
     def action_skip(self):
-        """El usuario omite el cargo por mora para este pago."""
+        """Omite el cargo por mora y abre el registro de pago en la factura original."""
         self.ensure_one()
-        self.origin_invoice_id.message_post(
+        origin = self.origin_invoice_id
+        origin.message_post(
             body='Cargo por mora omitido manualmente por el usuario.'
         )
-        return {'type': 'ir.actions.act_window_close'}
+        return origin.with_context(skip_smart_late_fee=True).action_register_payment()

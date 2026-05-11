@@ -4,7 +4,7 @@
     'summary': 'Extensión de suscripciones: modalidad pre/post pago, integración GCP y mora.',
     'author': 'Smart Business',
     'category': 'Accounting/Subscriptions',
-    'depends': ['sale_subscription', 'l10n_gt_sb_extra', 'account'],
+    'depends': ['sale_subscription', 'smart_l10n_gt', 'account'],
     'data': [
         'security/ir.model.access.csv',
         'data/ir_config_parameter.xml',

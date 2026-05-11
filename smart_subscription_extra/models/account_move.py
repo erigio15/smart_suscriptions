@@ -1,16 +1,14 @@
 from datetime import timedelta
 
 from odoo import api, fields, models
-from odoo.exceptions import UserError
 
 
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
     def action_register_payment(self):
-        # Interceptar antes de abrir el wizard de pago para evaluar mora.
-        # Se usa la fecha de hoy como proxy de la fecha de pago.
-        if (len(self) == 1
+        if (not self.env.context.get('skip_smart_late_fee')
+                and len(self) == 1
                 and self.move_type == 'out_invoice'
                 and self.state == 'posted'
                 and self.payment_state not in ('paid', 'in_payment', 'reversed')):

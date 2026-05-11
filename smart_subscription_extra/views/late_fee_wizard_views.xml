@@ -16,15 +16,17 @@
                     </group>
                     <p class="text-muted">
                         Se generará una factura adicional de mora por el monto
-                        indicado. Esta acción puede omitirse si existe un convenio
-                        con el cliente.
+                        indicado. Al confirmar o saltar, se abrirá el registro
+                        de pago de la factura original.
                     </p>
                 </sheet>
                 <footer>
                     <button name="action_confirm" type="object"
-                            string="Generar factura de mora" class="btn-primary"/>
+                            string="Generar mora y registrar pago"
+                            class="btn-primary"/>
                     <button name="action_skip" type="object"
-                            string="Omitir mora" class="btn-secondary"/>
+                            string="Omitir mora y registrar pago"
+                            class="btn-secondary"/>
                     <button special="cancel" string="Cancelar"/>
                 </footer>
             </form>
