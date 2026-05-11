@@ -10,7 +10,7 @@
             <field name="code">model._smart_cron_gcp_shutdown_check()</field>
             <field name="interval_number">1</field>
             <field name="interval_type">days</field>
-            <field name="numbercall">-1</field>
+            <field name="nextcall" eval="(datetime.now() + timedelta(minutes=5)).strftime('%Y-%m-%d %H:%M:%S')"/>
             <field name="active">True</field>
             <field name="user_id" ref="base.user_root"/>
         </record>
@@ -23,7 +23,7 @@
             <field name="code">model._smart_cron_gcp_block_check()</field>
             <field name="interval_number">1</field>
             <field name="interval_type">days</field>
-            <field name="numbercall">-1</field>
+            <field name="nextcall" eval="(datetime.now() + timedelta(minutes=10)).strftime('%Y-%m-%d %H:%M:%S')"/>
             <field name="active">True</field>
             <field name="user_id" ref="base.user_root"/>
         </record>
