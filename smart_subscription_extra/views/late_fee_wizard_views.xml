@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_smart_late_fee_wizard_form" model="ir.ui.view">
+        <field name="name">smart.late.fee.wizard.form</field>
+        <field name="model">smart.late.fee.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Confirmar cargo por mora">
+                <sheet>
+                    <group>
+                        <field name="subscription_id"/>
+                        <field name="origin_invoice_id"/>
+                        <field name="days_overdue"/>
+                        <field name="fee_amount" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="currency_id" invisible="1"/>
+                    </group>
+                    <p class="text-muted">
+                        Se generará una factura adicional de mora por el monto
+                        indicado. Esta acción puede omitirse si existe un convenio
+                        con el cliente.
+                    </p>
+                </sheet>
+                <footer>
+                    <button name="action_confirm" type="object"
+                            string="Generar factura de mora" class="btn-primary"/>
+                    <button name="action_skip" type="object"
+                            string="Omitir mora" class="btn-secondary"/>
+                    <button special="cancel" string="Cancelar"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

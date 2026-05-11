@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="param_gcp_sa_json" model="ir.config.parameter">
+            <field name="key">smart_subscription_extra.gcp_sa_json</field>
+            <field name="value"></field>
+        </record>
+
+        <record id="param_late_fee_product_id" model="ir.config.parameter">
+            <field name="key">smart_subscription_extra.late_fee_product_id</field>
+            <field name="value"></field>
+        </record>
+
+    </data>
+</odoo>

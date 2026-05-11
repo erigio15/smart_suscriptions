@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_order_form_smart_extra" model="ir.ui.view">
+        <field name="name">sale.order.form.sb.extra</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_subscription.sale_subscription_primary_form_view"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Smart Business" name="sb_extra">
+
+                    <!-- Sección 1: Facturación -->
+                    <group string="Facturación" name="sb_billing">
+                        <field name="smart_billing_mode"/>
+                        <field name="smart_invoice_due_days"/>
+                    </group>
+
+                    <!-- Sección 2: Servidor GCP -->
+                    <group string="Servidor GCP" name="smart_gcp">
+                        <group>
+                            <field name="smart_gcp_project_id"/>
+                            <field name="smart_gcp_zone"/>
+                            <field name="smart_gcp_instance_name"/>
+                        </group>
+                        <group>
+                            <field name="smart_gcp_shutdown_day"/>
+                            <field name="smart_gcp_shutdown_done" readonly="1"/>
+                            <field name="smart_gcp_block_day"/>
+                            <field name="smart_gcp_block_done" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <!-- Sección 3: Mora -->
+                    <group string="Mora por retraso" name="smart_late_fee">
+                        <field name="smart_late_fee_type"/>
+                        <field name="smart_late_fee_value"
+                               invisible="not smart_late_fee_type"/>
+                    </group>
+
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
