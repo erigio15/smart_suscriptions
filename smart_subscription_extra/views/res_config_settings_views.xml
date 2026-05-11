@@ -3,48 +3,39 @@
     <record id="res_config_settings_view_form_smart_subscription" model="ir.ui.view">
         <field name="name">res.config.settings.view.form.sb.subscription</field>
         <field name="model">res.config.settings</field>
-        <field name="inherit_id" ref="base_setup.action_general_configuration"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('settings')]" position="inside">
-                <div class="app_settings_block">
-                    <h2>Smart Business — Suscripciones</h2>
+            <xpath expr="//form" position="inside">
+                <app string="Smart Business" name="smart_subscription_extra"
+                     data-string="Smart Business">
 
-                    <div class="row mt16 o_settings_container">
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_right_pane">
-                                <label for="smart_late_fee_product_id"
-                                       string="Producto para cargo por mora"/>
-                                <div class="text-muted">
-                                    Producto de tipo Servicio que se usará en las
-                                    facturas de mora generadas automáticamente.
-                                </div>
-                                <div class="content-group mt8">
+                    <block title="Suscripciones — Cargo por mora" name="smart_late_fee_block">
+                        <setting string="Producto para cargo por mora"
+                                 help="Producto de tipo Servicio que se usará en las facturas de mora generadas automáticamente.">
+                            <div class="content-group">
+                                <div class="mt8">
                                     <field name="smart_late_fee_product_id"
                                            widget="many2one"
                                            options="{'no_create': True}"/>
                                 </div>
                             </div>
-                        </div>
+                        </setting>
+                    </block>
 
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_right_pane">
-                                <label for="smart_gcp_service_account_json"
-                                       string="Service Account JSON (GCP)"/>
-                                <div class="text-muted">
-                                    Contenido del archivo JSON del Service Account de
-                                    Google Cloud Platform. Requiere permiso
-                                    compute.instances.stop.
-                                </div>
-                                <div class="content-group mt8">
+                    <block title="Integración Google Cloud Platform" name="smart_gcp_block">
+                        <setting string="Service Account JSON (GCP)"
+                                 help="Contenido del archivo JSON del Service Account de GCP. Requiere permiso compute.instances.stop.">
+                            <div class="content-group">
+                                <div class="mt8">
                                     <field name="smart_gcp_service_account_json"
                                            widget="text"
                                            placeholder='{"type": "service_account", ...}'/>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </setting>
+                    </block>
 
-                </div>
+                </app>
             </xpath>
         </field>
     </record>

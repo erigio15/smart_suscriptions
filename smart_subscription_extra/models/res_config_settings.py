@@ -12,7 +12,7 @@ class ResConfigSettings(models.TransientModel):
         help='Producto/servicio que se usará en la línea de la factura de mora. '
              'Debe ser de tipo Servicio.')
 
-    smart_gcp_service_account_json = fields.Text(
+    smart_gcp_service_account_json = fields.Char(
         string='Service Account JSON (GCP)',
         config_parameter='smart_subscription_extra.gcp_sa_json',
         help='Contenido completo del archivo JSON del Service Account de GCP. '
